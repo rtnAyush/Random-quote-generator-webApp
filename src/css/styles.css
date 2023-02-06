@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
+* {
+    font-family: 'Itim', cursive;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    /* main box just like body */
+    position: relative;
+    background-color: black;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 1.5s;
+    position: relative;
+}
+
+#quote-box {
+    border-radius: 3px;
+    position: relative;
+    max-width: 30rem;
+    padding: 40px 50px;
+    display: table;
+    background-color: white;
+    animation: blink 6s ease;
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    min-width: 250px;
+    padding: 1rem;
+    box-shadow: 5px 4px 2px 1px rgba(0, 0, 0, 0.3);
+    /* background: #f1f5f8; */
+    /* background-image: radial-gradient(#bfc0c1 7.2%, transparent 0);
+    background-size: 25px 25px; */
+}
+
+#text-box {
+    text-align: center;
+    width: 450px;
+    height: auto;
+    clear: both;
+    font-weight: 500;
+    font-size: 1.75em;
+}
+
+#author {
+    text-align: right;
+}
+
+.icon-box {
+    display: flex;
+    justify-content: space-between;
+    margin: 4% auto 0% auto;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+footer {
+    color: rgba(0, 0, 0, 0.579);
+    text-align: center;
+    margin: 10%;
+}
+
+@media (max-width: 500px) {
+    #quote-box {
+        width: auto;
+        max-width: none;
+        min-width: auto;
+        margin: 4%;
+    }
+
+    #text-box {
+        width: auto;
+    }
+
+    .icon-box {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 10% auto 0%;
+    }
+
+    a {
+        margin: 4%;
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: .5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
