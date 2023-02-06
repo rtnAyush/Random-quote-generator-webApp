@@ -19,20 +19,17 @@
 }
 
 #quote-box {
-    border-radius: 3px;
     position: relative;
     max-width: 30rem;
-    padding: 40px 50px;
     display: table;
     background-color: white;
-    animation: blink 6s ease;
     border-radius: 10px;
     width: 100%;
     height: auto;
-    max-width: 500px;
     min-width: 250px;
     padding: 1rem;
     box-shadow: 5px 4px 2px 1px rgba(0, 0, 0, 0.3);
+    animation: blink 2s ease;
     /* background: #f1f5f8; */
     /* background-image: radial-gradient(#bfc0c1 7.2%, transparent 0);
     background-size: 25px 25px; */
@@ -97,7 +94,7 @@ footer {
         opacity: 0;
     }
 
-    50% {
+    70% {
         opacity: .5;
     }
 

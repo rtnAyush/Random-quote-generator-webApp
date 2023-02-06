@@ -1,24 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "../css/styles.css"
-import axios from "axios";
 import Quote from "./Quote"
 import Btn from "./Btn"
 import TwitterIcon from '@mui/icons-material/Twitter';
 
 function App() {
     const [quote, setQuote] = useState([]);
+    const [newQuote, setNewQuote] = useState("");
     const [randomColorStyle, setRandomColorStyle] = useState({
         backgroundColor: "black",
         color: "black"
     });
 
-    const [isClicked, setIsClicked] = useState(true);
-
-    async function getQuote() {
-        const quoteObject = await axios.get("https://api.quotable.io/random");
-        setQuote(quoteObject.data);
-        setIsClicked(false);
-    }
 
     function getRandomColor() {
         var letters = '0123456789ABCDEF';
@@ -30,21 +23,30 @@ function App() {
             backgroundColor: randomColor,
             color: randomColor
         })
-        setIsClicked(false);
     }
 
     useEffect(() => {
         getRandomColor();
-        getQuote();
-    }, [isClicked]);
+
+        const cleanFetch = fetch("https://api.quotable.io/random")
+            .then(res => res.json())
+            .then(
+                (quote) => {
+                    setQuote(quote)
+                }
+            )
+        return () => clearInterval(cleanFetch);
+
+    }, [newQuote]);
 
     return (
-        <div className="container" style={randomColorStyle}>
-            <div id="quote-box">
-                <Quote quote={quote} />
+        <div className="container" style={randomColorStyle} >
+            <div id="quote-box" >
+                <Quote key={quote._id} quote={quote} />
+
                 <div className="icon-box">
                     <Btn text={<TwitterIcon fontSize={"medium"} />} id={"tweet-quote"} link={"//twitter.com/intent/tweet"} randomColor={randomColorStyle.color} />
-                    <Btn text={"New quote"} id={"new-quote"} onCall={setIsClicked} randomColor={randomColorStyle.color} />
+                    <Btn text={"New quote"} id={"new-quote"} onCall={setNewQuote} randomColor={randomColorStyle.color} />
                 </div>
             </div>
             <footer>

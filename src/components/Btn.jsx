@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 
 function Btn(props) {
     return (
-        <a href={props.link} rel="operner" id={props.id} onClick={() => props.onCall(true)}>
+        <a href={props.link} rel="operner" id={props.id} onClick={() => { props.onCall(Math.random()); }}>
             <Button variant='containerd'
                 sx={{
                     color: "white", backgroundColor: props.randomColor, textTransform: "none", '&:hover': {
