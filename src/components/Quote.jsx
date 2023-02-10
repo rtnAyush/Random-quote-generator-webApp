@@ -4,7 +4,8 @@ import { useContext } from "react";
 import QuoteContext from "../context/quote/quoteContext";
 
 function Quote() {
-    const { quote: { content, author } } = useContext(QuoteContext);
+
+    const { quote: [{ content, author }] } = useContext(QuoteContext);
 
     return (
         <>
