@@ -94,10 +94,6 @@ footer {
         opacity: 0;
     }
 
-    70% {
-        opacity: .5;
-    }
-
     100% {
         opacity: 1;
     }

@@ -1,7 +1,8 @@
 import axios from "axios";
 let initialState = {
-    quotes: []
-};
+    content: "",
+    author: ""
+}
 
 async function newQuoteReducer(state = initialState, action) {
     switch (action.type) {
@@ -11,12 +12,17 @@ async function newQuoteReducer(state = initialState, action) {
 
             // console.log(newQuote.data);
             return {
-                ...state,
-                quotes: [newQuote.data]
+                content: newQuote.data.content,
+                author: newQuote.data.author,
             }
+        // return {
+        //     content: "newQuote.data.content",
+        //     author: "newQuote.data.author",
+        // }
+
 
         default:
-            console.log("default");
+            // console.log("default");
             return state;
     }
 }

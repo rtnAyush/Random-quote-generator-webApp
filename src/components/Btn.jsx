@@ -1,19 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from '@mui/material/Button';
-import { useDispatch } from "react-redux";
-import { getNewQuote } from "../store/actions/index";
+import QuoteContext from "../context/quote/quoteContext";
+import ColorContext from "../context/randomColor/colorContext";
 
 function Btn(props) {
-
-    const dispatch = useDispatch();
-    // console.log(props.data);
+    const { fetchData: getQuote } = useContext(QuoteContext);
+    const { randomColor: color, getRandomColor: getColor } = useContext(ColorContext);
 
     return (
-        <a href={props.link} rel="operner" id={props.id} onClick={() => dispatch(getNewQuote())}>
+        <a href={props.link} rel="operner" id={props.id} onClick={() => {
+            getQuote();
+            getColor();
+        }}>
             <Button variant='containerd'
                 sx={{
-                    color: "white", backgroundColor: "blue", textTransform: "none", '&:hover': {
-                        backgroundColor: "red",
+                    color: "white", backgroundColor: color, textTransform: "none", '&:hover': {
+                        backgroundColor: color + "B4",
                     }
                 }} >{props.text}</Button>
         </a>
