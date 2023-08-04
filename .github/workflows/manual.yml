@@ -1,0 +1,30 @@
+name: Deploy to Server
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # Update to the latest version of actions/checkout
+        
+      - name: Install dependencies and build
+        run: |
+          cd ./client
+          npm install
+          npm run build
+          
+      - name: Deploy to server
+        env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          # Copy the built files to the server
+          scp -r -o StrictHostKeyChecking=no -i "$SSH_PRIVATE_KEY" build/* ibm@$SERVER_IP:/home/ibm/test/build
+
+          # Run the deploy.sh script on the server
+          ssh -i "$SSH_PRIVATE_KEY" user@$SERVER_IP "bash /path/to/your/app/deploy.sh"
